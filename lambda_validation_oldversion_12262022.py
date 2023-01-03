@@ -162,3 +162,5 @@ def lambda_handler(event, context):
         human_review_folder_name = file_name
         o= PreprocessValidation()
         c,d = o.validate(bucket_name, preprocess_folder_name, bucket_name, human_review_folder_name)
+        print('madhu')
+        print('madhu11)

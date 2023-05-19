@@ -137,13 +137,14 @@ class PreprocessValidation():
         c = c.reset_index(drop = True)
         for n1, i in enumerate(a['src_path']):
             for n2, j in enumerate(c['src_path']):
-                if str(i) == str(j):
-                    if a.loc[n1,'metadata'] == c.loc[n2,'metadata']:
-                        self.s3c.copy_object(CopySource={'Bucket': self.preprocess_bucket_name, 'Key': j.replace('s3://human-review-stage/revmaxai-images', 'intermediate')}, Bucket = self.preprocess_bucket_name, Key= j.replace('s3://human-review-stage/revmaxai-images','processed'))
-                        self.s3c.delete_object(Bucket = self.preprocess_bucket_name,  Key = j.replace('s3://human-review-stage/revmaxai-images', 'intermediate'))
-                    else:
-                        print(j)
-                        self.re_preprocess(c['src_path'][n2], c['metadata'][n2])
+                
+            if str(i) == str(j):
+                if a.loc[n1,'metadata'] == c.loc[n2,'metadata']:
+                    self.s3c.copy_object(CopySource={'Bucket': self.preprocess_bucket_name, 'Key': j.replace('s3://human-review-stage/revmaxai-images', 'intermediate')}, Bucket = self.preprocess_bucket_name, Key= j.replace('s3://human-review-stage/revmaxai-images','processed'))
+                    self.s3c.delete_object(Bucket = self.preprocess_bucket_name,  Key = j.replace('s3://human-review-stage/revmaxai-images', 'intermediate'))
+                else:
+                    print(j)
+                    self.re_preprocess(c['src_path'][n2], c['metadata'][n2])
                         
         return c, a
     
@@ -163,3 +164,5 @@ def lambda_handler(event, context):
         o= PreprocessValidation()
         c,d = o.validate(bucket_name, preprocess_folder_name, bucket_name, human_review_folder_name)
         print('madhu')
+        print('unittesting')
+        print('unittestupdated')

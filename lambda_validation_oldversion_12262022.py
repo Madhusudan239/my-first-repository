@@ -165,4 +165,4 @@ def lambda_handler(event, context):
         c,d = o.validate(bucket_name, preprocess_folder_name, bucket_name, human_review_folder_name)
         print('madhu')
         print('unittesting')
-        print('unittestupdated')
+        print('unittestupdated2')

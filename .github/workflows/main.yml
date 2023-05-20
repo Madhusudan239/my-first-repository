@@ -20,14 +20,17 @@ jobs:
         with:
           python-version: 3.x
           
+      - name: Install dependencies
+        run: |
+          pip install pytest
+          pip install sphinx
+
       - uses: actions/checkout@v1
       - uses: ammaraskar/sphinx-action@master
         with:
           docs-folder: "docs/"
 
-      - name: Install dependencies
-        run: |
-          pip install pytest
+
           
       - name: Run unit tests
         run: pytest
